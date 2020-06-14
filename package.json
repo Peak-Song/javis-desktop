@@ -1,0 +1,110 @@
+{
+  "name": "javis-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "author": "peaksong",
+  "description": "Javis项目的桌面端实现, Javis致力于打造一个日常学习生活的小助理",
+  "scripts": {
+    "vue-serve": "vue-cli-service serve src/renderer/main.ts",
+    "vue-build-dev": "vue-cli-service build src/renderer/main.ts --mode development",
+    "vue-build": "vue-cli-service build src/renderer/main.ts",
+    "lint": "vue-cli-service lint",
+    "electron-pack-dev": "webpack-cli --config electron.config.ts --mode development",
+    "pack-dev": "npm run vue-build-dev && npm run electron-pack-dev && electron .",
+    "electron-pack": "webpack-cli --config electron.config.ts --mode production",
+    "pack": "npm run vue-build && npm run electron-pack",
+    "pack-run": "npm run pack && electron .",
+    "build": "npm run pack && electron-builder"
+  },
+  "main": "dist/index.js",
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "element-ui": "^2.13.2",
+    "vue": "^2.6.11",
+    "vue-class-component": "^7.2.3",
+    "vue-property-decorator": "^8.4.2",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.12",
+    "@types/webpack": "^4.41.17",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "@vue/cli-plugin-babel": "~4.4.0",
+    "@vue/cli-plugin-eslint": "~4.4.0",
+    "@vue/cli-plugin-router": "~4.4.0",
+    "@vue/cli-plugin-typescript": "~4.4.0",
+    "@vue/cli-plugin-vuex": "~4.4.0",
+    "@vue/cli-service": "~4.4.0",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "electron": "^9.0.4",
+    "electron-builder": "^22.7.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "lint-staged": "^9.5.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.2",
+    "ts-loader": "^7.0.5",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-cli": "^3.3.11"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "build": {
+    "productName": "javis-desktop",
+    "appId": "com.peaksong.helloworld",
+    "npmRebuild": false,
+    "electronDownload": {
+      "mirror": "https://npm.taobao.org/mirrors/electron/",
+      "isVerifyChecksum": false
+    },
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "mac": {
+      "icon": "build/icons/icon.icns"
+    },
+    "win": {
+      "icon": "build/icons/icon.ico",
+      "extraResources": [
+        "./dist/**/*.dll"
+      ]
+    },
+    "linux": {
+      "icon": "build/icons"
+    }
+  }
+}

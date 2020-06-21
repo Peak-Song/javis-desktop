@@ -36,7 +36,7 @@
         <span
           v-if="item.meta && item.meta.title"
           slot="title"
-        >{{ item.meta.title }}</span>
+        >{{ generateTitle(item.meta.title) }}</span>
       </template>
       <template v-if="item.children">
         <sidebar-item
@@ -59,6 +59,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { Route, RouteConfig } from 'vue-router'
 import { isExternal } from '@/utils/validate'
 import SidebarItemLink from './SidebarItemLink.vue'
+import { generateTitle } from '@/utils/i18n'
 
 @Component({
   // Set 'name' here to prevent uglifyjs from causing recursive component not work
@@ -77,11 +78,7 @@ export default class extends Vue {
   get showingChildNumber () {
     if (this.item.children) {
       const showingChildren = this.item.children.filter((item) => {
-        if (item.meta && item.meta.hidden) {
-          return false
-        } else {
-          return true
-        }
+        return !(item.meta && item.meta.hidden)
       })
       return showingChildren.length
     }
@@ -100,9 +97,11 @@ export default class extends Vue {
       }
     }
     // If there is no children, return itself with path removed,
-    // because this.basePath already conatins item's path information
+    // because this.basePath already contains item's path information
     return { ...this.item, path: '' }
   }
+
+  private generateTitle: Function = generateTitle
 
   private resolvePath (routePath: string) {
     if (isExternal(routePath)) {

@@ -1,21 +1,13 @@
 <template>
-  <el-breadcrumb
-    class="app-breadcrumb"
-    separator="/"
-  >
+  <el-breadcrumb class="app-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
-      <el-breadcrumb-item
-        v-for="(item, index) in breadcrumbs"
-        :key="item.path"
-      >
-        <span
-          v-if="item.redirect === 'noredirect' || index === breadcrumbs.length-1"
-          class="no-redirect"
-        >{{ item.meta.title }}</span>
-        <a
-          v-else
-          @click.prevent="handleLink(item)"
-        >{{ item.meta.title }}</a>
+      <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="item.path">
+        <span v-if="item.redirect === 'noredirect' || index === breadcrumbs.length-1" class="no-redirect">
+          {{ generateTitle(item.meta.title) }}
+        </span>
+        <a v-else @click.prevent="handleLink(item)">
+          {{ generateTitle(item.meta.title) }}
+        </a>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
@@ -24,7 +16,8 @@
 <script lang="ts">
 import pathToRegexp from 'path-to-regexp'
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { RouteRecord, Route } from 'vue-router'
+import { Route, RouteRecord } from 'vue-router'
+import { generateTitle } from '@/utils/i18n'
 
 @Component({
   name: 'Breadcrumb'
@@ -44,6 +37,8 @@ export default class extends Vue {
   created () {
     this.getBreadcrumb()
   }
+
+  private generateTitle: Function = generateTitle
 
   private getBreadcrumb () {
     let matched = this.$route.matched.filter(

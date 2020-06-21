@@ -41,6 +41,21 @@ export default new Router({
       ]
     },
     {
+      path: '/note',
+      component: Layout,
+      redirect: '/note/all-notes',
+      children: [
+        {
+          path: 'all-notes',
+          component: () => import(/* webpackChunkName: "all-notes" */ '@/views/note/all-notes.vue'),
+          meta: {
+            title: 'AllNote',
+            icon: 'example'
+          }
+        }
+      ]
+    },
+    {
       path: '/example',
       component: Layout,
       redirect: '/example/tree',
@@ -53,7 +68,7 @@ export default new Router({
           path: 'tree',
           component: () => import(/* webpackChunkName: "tree" */ '@/views/tree/index.vue'),
           meta: {
-            title: 'Tree',
+            title: 'tree',
             icon: 'tree'
           }
         },
@@ -81,66 +96,77 @@ export default new Router({
         }
       ]
     },
+    // {
+    //   path: '/nested',
+    //   component: Layout,
+    //   redirect: '/nested/menu1',
+    //   meta: {
+    //     title: 'Nested',
+    //     icon: 'nested'
+    //   },
+    //   children: [
+    //     {
+    //       path: 'menu1',
+    //       component: () => import(/* webpackChunkName: "menu1" */ '@/views/nested/menu1/index.vue'),
+    //       redirect: '/nested/menu1/menu1-1',
+    //       meta: { title: 'Menu1' },
+    //       children: [
+    //         {
+    //           path: 'menu1-1',
+    //           component: () => import(/* webpackChunkName: "menu1-1" */ '@/views/nested/menu1/menu1-1/index.vue'),
+    //           meta: { title: 'Menu1-1' }
+    //         },
+    //         {
+    //           path: 'menu1-2',
+    //           component: () => import(/* webpackChunkName: "menu1-2" */ '@/views/nested/menu1/menu1-2/index.vue'),
+    //           redirect: '/nested/menu1/menu1-2/menu1-2-1',
+    //           meta: { title: 'Menu1-2' },
+    //           children: [
+    //             {
+    //               path: 'menu1-2-1',
+    //               component: () => import(/* webpackChunkName: "menu1-2-1" */ '@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
+    //               meta: { title: 'Menu1-2-1' }
+    //             },
+    //             {
+    //               path: 'menu1-2-2',
+    //               component: () => import(/* webpackChunkName: "menu1-2-2" */ '@/views/nested/menu1/menu1-2/menu1-2-2/index.vue'),
+    //               meta: { title: 'Menu1-2-2' }
+    //             }
+    //           ]
+    //         },
+    //         {
+    //           path: 'menu1-3',
+    //           component: () => import(/* webpackChunkName: "menu1-3" */ '@/views/nested/menu1/menu1-3/index.vue'),
+    //           meta: { title: 'Menu1-3' }
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       path: 'menu2',
+    //       component: () => import(/* webpackChunkName: "menu2" */ '@/views/nested/menu2/index.vue'),
+    //       meta: { title: 'Menu2' }
+    //     }
+    //   ]
+    // },
     {
-      path: '/nested',
+      path: '/external-link',
       component: Layout,
-      redirect: '/nested/menu1',
       meta: {
-        title: 'Nested',
-        icon: 'nested'
+        title: 'External Link',
+        icon: 'link'
       },
       children: [
         {
-          path: 'menu1',
-          component: () => import(/* webpackChunkName: "menu1" */ '@/views/nested/menu1/index.vue'),
-          redirect: '/nested/menu1/menu1-1',
-          meta: { title: 'Menu1' },
-          children: [
-            {
-              path: 'menu1-1',
-              component: () => import(/* webpackChunkName: "menu1-1" */ '@/views/nested/menu1/menu1-1/index.vue'),
-              meta: { title: 'Menu1-1' }
-            },
-            {
-              path: 'menu1-2',
-              component: () => import(/* webpackChunkName: "menu1-2" */ '@/views/nested/menu1/menu1-2/index.vue'),
-              redirect: '/nested/menu1/menu1-2/menu1-2-1',
-              meta: { title: 'Menu1-2' },
-              children: [
-                {
-                  path: 'menu1-2-1',
-                  component: () => import(/* webpackChunkName: "menu1-2-1" */ '@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
-                  meta: { title: 'Menu1-2-1' }
-                },
-                {
-                  path: 'menu1-2-2',
-                  component: () => import(/* webpackChunkName: "menu1-2-2" */ '@/views/nested/menu1/menu1-2/menu1-2-2/index.vue'),
-                  meta: { title: 'Menu1-2-2' }
-                }
-              ]
-            },
-            {
-              path: 'menu1-3',
-              component: () => import(/* webpackChunkName: "menu1-3" */ '@/views/nested/menu1/menu1-3/index.vue'),
-              meta: { title: 'Menu1-3' }
-            }
-          ]
+          path: 'https://peaksong.gitee.io/blog/',
+          meta: {
+            title: 'Gitee Blog',
+            icon: 'link'
+          }
         },
         {
-          path: 'menu2',
-          component: () => import(/* webpackChunkName: "menu2" */ '@/views/nested/menu2/index.vue'),
-          meta: { title: 'Menu2' }
-        }
-      ]
-    },
-    {
-      path: 'external-link',
-      component: Layout,
-      children: [
-        {
-          path: 'https://github.com/Armour/vue-typescript-admin-template',
+          path: 'https://peak-song.github.io/blog/',
           meta: {
-            title: 'External Link',
+            title: 'Github Blog',
             icon: 'link'
           }
         }

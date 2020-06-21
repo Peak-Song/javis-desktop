@@ -12,11 +12,6 @@ module.exports = {
   },
   css: {
     loaderOptions: {
-      // by default the `sass` option will apply to both syntaxes
-      // because `scss` syntax is also processed by sass-loader underlyingly
-      // but when configuring the `data` option
-      // `scss` syntax requires an semicolon at the end of a statement, while `sass` syntax requires none
-      // in that case, we can target the `scss` syntax separately using the `scss` option
       scss: {
         prependData: '@import "@/styles/_variables.scss";\n@import "@/styles/_mixins.scss";'
       }
@@ -41,8 +36,6 @@ module.exports = {
   },
   pluginOptions: {},
   chainWebpack (config) {
-    // Provide the app's title in webpack's name field, so that
-    // it can be accessed in index.html to inject the correct title.
     config.set('name', name)
   }
 }

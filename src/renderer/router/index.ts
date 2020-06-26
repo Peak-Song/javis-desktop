@@ -56,6 +56,21 @@ export default new Router({
       ]
     },
     {
+      path: '/note-space',
+      component: Layout,
+      redirect: '/note-space/default',
+      children: [
+        {
+          path: 'default',
+          component: () => import(/* webpackChunkName: "space" */ '@/views/note/space.vue'),
+          meta: {
+            title: 'NoteSpace',
+            icon: 'example'
+          }
+        }
+      ]
+    },
+    {
       path: '/example',
       component: Layout,
       redirect: '/example/tree',

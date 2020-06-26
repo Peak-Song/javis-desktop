@@ -10,8 +10,8 @@
     />
     <sidebar class="sidebar-container" />
     <div class="main-container">
-      <navbar />
-      <app-main />
+      <Navbar />
+      <AppMain />
     </div>
   </div>
 </template>
@@ -67,9 +67,11 @@ export default class extends mixins(ResizeMixin) {
 
 .main-container {
   min-height: 100%;
+  height:100%;
   transition: margin-left .28s;
   margin-left: $sideBarWidth;
   position: relative;
+  overflow: hidden;
 }
 
 .sidebar-container {

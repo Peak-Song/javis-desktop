@@ -19,7 +19,13 @@ export default class extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-.app-main {
-  overflow: hidden;
-}
+  .app-main {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+  }
+
+  .app-main > div {
+    height: 100%;
+  }
 </style>

@@ -17,7 +17,7 @@
       >
         <div class="avatar-wrapper">
           <img
-            :src="avatar+'?imageView2/1/w/80/h/80'"
+            :src=avatar_src
             class="user-avatar"
           >
           <i class="el-icon-caret-bottom" />
@@ -91,16 +91,19 @@ export default class extends Vue {
     await UserModule.LogOut()
     this.$router.push(`/login?redirect=${this.$route.fullPath}`)
   }
+
+  private avatar_src= 'https://cdn.jsdelivr.net/gh/Peak-Song/blog_cdn/javis_desktop/avatar_batman.jpg'
 }
 </script>
 
 <style lang="scss" scoped>
 .navbar {
-  height: 50px;
+  height: $navBarHeight;
   overflow: hidden;
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  width: 100%;
 
   .hamburger-container {
     line-height: 46px;

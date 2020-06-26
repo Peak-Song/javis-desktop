@@ -1,18 +1,20 @@
 <template>
-  <mavon-editor v-model="mdValue"/>
+  <div>
+    <NotePage></NotePage>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import NotePage from '@/components/Note/index.vue'
 
 @Component({
-  name: 'AllNote'
+  name: 'NoteSpace',
+  components: {
+    NotePage
+  }
 })
 export default class extends Vue {
-  get name () {
-    return 'all-notes'
-  }
-
   private mdValue = '#### header'
 }
 </script>

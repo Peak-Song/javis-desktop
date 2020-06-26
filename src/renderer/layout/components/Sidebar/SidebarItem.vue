@@ -1,43 +1,28 @@
 <template>
-  <div
-    v-if="!item.meta || !item.meta.hidden"
+  <div v-if="!item.meta || !item.meta.hidden"
     :class="['menu-wrapper', isCollapse ? 'simple-mode' : 'full-mode', {'first-level': isFirstLevel}]"
   >
     <template v-if="theOnlyOneChild && !theOnlyOneChild.children">
-      <sidebar-item-link
-        v-if="theOnlyOneChild.meta"
-        :to="resolvePath(theOnlyOneChild.path)"
-      >
-        <el-menu-item
-          :index="resolvePath(theOnlyOneChild.path)"
-          :class="{'submenu-title-noDropdown': isFirstLevel}"
-        >
-          <svg-icon
-            v-if="theOnlyOneChild.meta.icon"
-            :name="theOnlyOneChild.meta.icon"
-          />
-          <span
-            v-if="theOnlyOneChild.meta.title"
-            slot="title"
-          >{{ theOnlyOneChild.meta.title }}</span>
+
+      <sidebar-item-link v-if="theOnlyOneChild.meta" :to="resolvePath(theOnlyOneChild.path)">
+        <el-menu-item :index="resolvePath(theOnlyOneChild.path)" :class="{'submenu-title-noDropdown': isFirstLevel}">
+          <svg-icon v-if="theOnlyOneChild.meta.icon" :name="theOnlyOneChild.meta.icon"/>
+          <span v-if="theOnlyOneChild.meta.title" slot="title">
+            {{ generateTitle(theOnlyOneChild.meta.title) }}
+          </span>
         </el-menu-item>
       </sidebar-item-link>
+
     </template>
-    <el-submenu
-      v-else
-      :index="resolvePath(item.path)"
-      popper-append-to-body
-    >
+    <el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
+
       <template slot="title">
-        <svg-icon
-          v-if="item.meta && item.meta.icon"
-          :name="item.meta.icon"
-        />
-        <span
-          v-if="item.meta && item.meta.title"
-          slot="title"
-        >{{ generateTitle(item.meta.title) }}</span>
+        <svg-icon v-if="item.meta && item.meta.icon" :name="item.meta.icon"/>
+        <span v-if="item.meta && item.meta.title" slot="title">
+          {{ generateTitle(item.meta.title) }}
+        </span>
       </template>
+
       <template v-if="item.children">
         <sidebar-item
           v-for="child in item.children"
@@ -49,6 +34,7 @@
           class="nest-menu"
         />
       </template>
+
     </el-submenu>
   </div>
 </template>
@@ -56,7 +42,7 @@
 <script lang="ts">
 import path from 'path'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { Route, RouteConfig } from 'vue-router'
+import { RouteConfig } from 'vue-router'
 import { isExternal } from '@/utils/validate'
 import SidebarItemLink from './SidebarItemLink.vue'
 import { generateTitle } from '@/utils/i18n'

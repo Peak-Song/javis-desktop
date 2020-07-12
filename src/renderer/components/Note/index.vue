@@ -4,21 +4,23 @@
       <el-container id="note_page">
         <el-aside id="note_aside">
           <el-container id="note_aside_container">
-            <el-header>
+            <el-header id="note_aside_header">
               <el-input
                 id="note_search"
-                placeholder="请输入内容"
+                placeholder="查找笔记"
                 prefix-icon="el-icon-search"
                 v-model="searchKeyword">
               </el-input>
             </el-header>
-            <el-main >
+            <el-main id="note_aside_main">
               <el-table
                 :data="tableData"
-                style="width: 100%">
+                :show-header="false"
+                id="note_aside_main_table">
                 <el-table-column
                   prop="date"
-                  width="180">
+                  label=""
+                  id="note_aside_main_column">
                 </el-table-column>
               </el-table>
             </el-main>
@@ -116,6 +118,23 @@ export default class NotePage extends Vue {
 
   #note_aside_container {
     height: 100%;
+  }
+
+  #note_aside_header {
+    padding: 5px 5px 0;
+  }
+
+  #note_aside_main {
+    padding: 5px;
+    width: 100%;
+  }
+
+  #note_aside_main_table {
+    width: 100%;
+  }
+
+  #note_aside_main_column {
+    width: 100%;
   }
 
   #note_content {

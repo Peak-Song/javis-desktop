@@ -1,8 +1,19 @@
 import { app, BrowserWindow } from 'electron'
 
+import { i18n } from './configs/i18next.config'
+import { buildMenu } from './menu'
+
 let mainWindow: Electron.BrowserWindow | null
 
 function createWindow () {
+  i18n.on('loaded', (loaded) => {
+    i18n.changeLanguage('en')
+    i18n.off('loaded')
+  })
+  i18n.on('languageChanged', (lng) => {
+    buildMenu(app, mainWindow, i18n)
+  })
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     height: 600,
@@ -16,7 +27,7 @@ function createWindow () {
   mainWindow.loadFile('dist/index.html')
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {

@@ -15,8 +15,11 @@ import router from '@/router'
 import { i18n } from '@/lang'
 import '@/icons/components'
 
+import ipcService from '@/plugins/ipcService'
+
 Vue.use(ElementUI)
 Vue.use(MDEditor)
+Vue.use(ipcService)
 
 Vue.use(SvgIcon, {
   tagName: 'svg-icon',

@@ -51,7 +51,7 @@
     "@vue/cli-service": "~4.4.0",
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/eslint-config-typescript": "^5.0.2",
-    "electron": "^9.0.4",
+    "electron": "^9.1.0",
     "electron-builder": "^22.7.0",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
@@ -122,6 +122,7 @@
     }
   },
   "thanks": {
-    "mavonEditor": "https://github.com/hinesboy/mavonEditor"
+    "mavonEditor": "https://github.com/hinesboy/mavonEditor",
+    "electron-ipc-demo": "https://github.com/feng-fu/electron-ipc-demo"
   }
 }

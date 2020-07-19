@@ -16,5 +16,7 @@
   "en": "英文",
   "Language": "语言",
   "Img+": "图话",
-  "Search": "搜索"
+  "Search": "搜索",
+  "Preference": "首选项",
+  "Open DevTool": "打开调试工具"
 }

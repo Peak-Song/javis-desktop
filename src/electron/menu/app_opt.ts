@@ -1,35 +1,30 @@
-import { MenuItemConstructorOptions } from 'electron'
+import { MenuItemConstructorOptions, MenuItem } from 'electron'
 import i18next from 'i18next'
 
 export function app_opt (app: Electron.App,
   mainWindow: Electron.BrowserWindow | null,
   i18n: typeof i18next): MenuItemConstructorOptions {
   return {
-    label: i18n.t('About'),
+    label: i18n.t('Javis Desktop'),
     submenu: [
       {
-        label: i18n.t('About Javis Desktop'),
+        label: i18n.t('Preference'),
+        click: () => {
+          console.log('Preference click')
+        }
+      },
+      {
+        label: i18n.t('About'),
         role: 'about'
       },
       {
-        type: 'separator'
-      },
-      {
-        label: i18n.t('Hide App'),
-        accelerator: 'Command+H',
-        role: 'hide'
-      },
-      {
-        label: i18n.t('Hide Others'),
-        accelerator: 'Command+Shift+H',
-        role: 'hideOthers'
-      },
-      {
-        label: i18n.t('Show All'),
-        role: 'unhide'
-      },
-      {
-        type: 'separator'
+        label: i18n.t('Open DevTool'),
+        accelerator: 'F12',
+        click: (menuItem: MenuItem, browserWindow: (Electron.BrowserWindow) | (undefined)): void => {
+          if (browserWindow != null) {
+            browserWindow.webContents.openDevTools()
+          }
+        }
       },
       {
         label: i18n.t('Quit'),

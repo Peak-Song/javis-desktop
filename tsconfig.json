@@ -33,7 +33,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "electron.config.ts"
+    "electron.webpack.config.ts"
   ],
   "exclude": [
     "node_modules"

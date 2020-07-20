@@ -5,6 +5,7 @@ const name = 'Javis DeskTop UI'
 const _srcBase = path.resolve(__dirname, './src/renderer')
 
 module.exports = {
+  outputDir: path.resolve(__dirname, 'dist/renderer'),
   publicPath: process.env.NODE_ENV === 'production' ? './' : './',
   lintOnSave: process.env.NODE_ENV === 'development',
   pwa: {

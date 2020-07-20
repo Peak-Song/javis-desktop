@@ -18,12 +18,12 @@ function createWindow () {
     height: 600,
     width: 800,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: 'dist/preload.js',
       nodeIntegration: true
     }
   })
 
-  mainWindow.loadFile('dist/index.html')
+  mainWindow.loadFile('dist/renderer/index.html')
 
   mainWindow.on('closed', () => {
     mainWindow = null

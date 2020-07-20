@@ -36,6 +36,8 @@
     "electron.webpack.config.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/preference/*",
+    "preference.webpack.config.js"
   ]
 }

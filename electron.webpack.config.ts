@@ -27,7 +27,7 @@ const config: webpack.Configuration = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'electron-entry.js'
   },
-  target: 'electron-main' // 不写该行会报 Can't resolve 'fs'
+  target: 'electron-main'
 }
 
 export default config

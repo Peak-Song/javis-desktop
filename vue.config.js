@@ -14,7 +14,16 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
-        prependData: '@import "@/styles/_variables.scss";\n@import "@/styles/_mixins.scss";'
+        additionalData: (content, loaderContext) => {
+          const { resourcePath, rootContext } = loaderContext
+          const relativePath = path.relative(rootContext, resourcePath)
+
+          if (relativePath.includes('_variables.scss') || relativePath.includes('_mixins.scss')) {
+            return content
+          }
+
+          return '@import "@/styles/_variables.scss";\n@import "@/styles/_mixins.scss";\n' + content
+        }
       }
     }
   },

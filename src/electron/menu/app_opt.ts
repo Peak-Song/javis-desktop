@@ -1,7 +1,7 @@
 import { MenuItemConstructorOptions, MenuItem } from 'electron'
 import i18next from 'i18next'
 
-export function app_opt (app: Electron.App,
+export function appOpt (app: Electron.App,
   mainWindow: Electron.BrowserWindow | null,
   i18n: typeof i18next): MenuItemConstructorOptions {
   return {
@@ -9,8 +9,13 @@ export function app_opt (app: Electron.App,
     submenu: [
       {
         label: i18n.t('Preference'),
-        click: () => {
-          console.log('Preference click')
+        click: (menuItem: MenuItem, browserWindow: (Electron.BrowserWindow) | (undefined)): void => {
+          if (browserWindow != null) {
+            console.log('no null browser window')
+            browserWindow.loadFile('dist/preference/index.html').then(
+              () => { console.log('open') }
+            ).catch((reason) => { console.log('exception' + reason) })
+          }
         }
       },
       {

@@ -8,7 +8,7 @@
         <el-menu-item :index="resolvePath(theOnlyOneChild.path)" :class="{'submenu-title-noDropdown': isFirstLevel}">
           <svg-icon v-if="theOnlyOneChild.meta.icon" :name="theOnlyOneChild.meta.icon"/>
           <span v-if="theOnlyOneChild.meta.title" slot="title">
-            {{ generateTitle(theOnlyOneChild.meta.title) }}
+            {{ genTitle(theOnlyOneChild.meta.title) }}
           </span>
         </el-menu-item>
       </sidebar-item-link>
@@ -19,7 +19,7 @@
       <template slot="title">
         <svg-icon v-if="item.meta && item.meta.icon" :name="item.meta.icon"/>
         <span v-if="item.meta && item.meta.title" slot="title">
-          {{ generateTitle(item.meta.title) }}
+          {{ genTitle(item.meta.title) }}
         </span>
       </template>
 
@@ -87,7 +87,7 @@ export default class extends Vue {
     return { ...this.item, path: '' }
   }
 
-  private generateTitle: Function = generateTitle
+  private genTitle: (this: Vue, title: string)=>string = generateTitle
 
   private resolvePath (routePath: string) {
     if (isExternal(routePath)) {

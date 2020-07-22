@@ -9,6 +9,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
         test: /\.ts$/,
         use: 'ts-loader',
         exclude: /node_modules/
@@ -29,6 +36,17 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: './fonts/[hash].[ext]'
+            }
+          }
+        ]
       }
     ]
   },
@@ -39,9 +57,9 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.vue'],
     alias: {
-      '@': path.resolve(__dirname, 'src/preference/')
+      '@@': path.resolve(__dirname, 'src/preference/')
     }
   },
   output: {

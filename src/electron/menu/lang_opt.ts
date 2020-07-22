@@ -2,7 +2,7 @@ import { MenuItemConstructorOptions } from 'electron'
 import i18next from 'i18next'
 import config from '../configs/app.config'
 
-export function lang_opt (app: Electron.App,
+export function langOpt (app: Electron.App,
   mainWindow: Electron.BrowserWindow | null,
   i18n: typeof i18next): MenuItemConstructorOptions {
   return {

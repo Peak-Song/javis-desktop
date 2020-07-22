@@ -1,7 +1,7 @@
 import { MenuItemConstructorOptions } from 'electron'
 import i18next from 'i18next'
 
-export function note_opt (app: Electron.App,
+export function noteOpt (app: Electron.App,
   mainWindow: Electron.BrowserWindow | null,
   i18n: typeof i18next): MenuItemConstructorOptions {
   return {

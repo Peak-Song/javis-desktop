@@ -1,1 +1,2 @@
-preference.webpack.config.js
+preference.electron.config.js
+src/electron/preload.js

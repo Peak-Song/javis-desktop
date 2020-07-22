@@ -38,6 +38,6 @@
   "exclude": [
     "node_modules",
     "src/preference/*",
-    "preference.webpack.config.js"
+    "build/preference.webpack.config.js"
   ]
 }

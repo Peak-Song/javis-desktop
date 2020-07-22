@@ -1,10 +1,10 @@
-const i18n_route = {
+const i18nRouter = {
   Note: 'Note',
   Dashboard: 'Dashboard'
 }
 
 const en = {
-  route: i18n_route
+  route: i18nRouter
 }
 
 export default { en }

@@ -1,5 +1,4 @@
 import { app, BrowserWindow } from 'electron'
-import path from 'path'
 import { i18n } from './configs/i18next.config'
 import { buildMenu } from './menu'
 

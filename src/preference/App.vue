@@ -1,12 +1,16 @@
 <template>
-  <div id="app" />
+  <div id="app">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+<script>
+import HelloWorld from '@@/component/HelloWorld.vue'
 
-@Component({
-  name: 'App'
-})
-export default class extends Vue {}
+export default {
+  name: 'App',
+  components: {
+    HelloWorld
+  }
+}
 </script>

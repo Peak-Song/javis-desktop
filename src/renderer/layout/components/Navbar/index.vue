@@ -17,7 +17,7 @@
       >
         <div class="avatar-wrapper">
           <img
-            :src=avatar_src
+            :src=avatarSrc
             class="user-avatar"
           >
           <i class="el-icon-caret-bottom" />
@@ -92,7 +92,7 @@ export default class extends Vue {
     this.$router.push(`/login?redirect=${this.$route.fullPath}`)
   }
 
-  private avatar_src= 'https://cdn.jsdelivr.net/gh/Peak-Song/blog_cdn/javis_desktop/avatar_batman.jpg'
+  private avatarSrc= 'https://cdn.jsdelivr.net/gh/Peak-Song/blog_cdn/javis_desktop/avatar_batman.jpg'
 }
 </script>
 

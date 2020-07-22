@@ -1,4 +1,4 @@
-import { MenuItemConstructorOptions, MenuItem } from 'electron'
+import { MenuItemConstructorOptions, MenuItem, BrowserWindow } from 'electron'
 import i18next from 'i18next'
 
 export function appOpt (app: Electron.App,
@@ -20,7 +20,22 @@ export function appOpt (app: Electron.App,
       },
       {
         label: i18n.t('About'),
-        role: 'about'
+        click: (menuItem: MenuItem, browserWindow: (Electron.BrowserWindow) | (undefined)): void => {
+          const newWindow = new BrowserWindow({
+            show: false,
+            // frame: false,
+            autoHideMenuBar: true,
+            webPreferences: {
+              nodeIntegration: true
+            }
+          })
+
+          newWindow.loadFile('dist/preference/index.html')
+
+          newWindow.once('ready-to-show', () => {
+            newWindow.show()
+          })
+        }
       },
       {
         label: i18n.t('Open DevTool'),

@@ -1,6 +1,4 @@
-import { IpcRendererEvent } from 'electron'
-
-export interface CallbackCache {
-  channel: string;
-  listener: (event: IpcRendererEvent, ...args: never[]) => void;
+export interface AlertInfo {
+  title: string,
+  type: 'success' | 'info' | 'warning' | 'error'
 }

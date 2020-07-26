@@ -21,7 +21,7 @@ export default class extends Vue {}
 <style lang="scss" scoped>
   .app-main {
     overflow: hidden;
-    height: 100%;
+    max-height: 100%;
     width: 100%;
   }
 

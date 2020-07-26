@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="classObj"
-    class="app-wrapper"
-  >
+  <div :class="classObj" class="app-wrapper">
     <div
       v-if="classObj.mobile && sidebar.opened"
       class="drawer-bg"
@@ -12,6 +9,7 @@
     <div class="main-container">
       <Navbar />
       <AppMain />
+      <el-alert :title="alertTitle" :type="alertType" :closable="alertClosable" show-icon class="alert-bar"></el-alert>
     </div>
   </div>
 </template>
@@ -22,6 +20,9 @@ import { mixins } from 'vue-class-component'
 import { DeviceType, AppModule } from '@/store/modules/app'
 import { AppMain, Navbar, Sidebar } from './components'
 import ResizeMixin from './mixin/resize'
+import { REFRESH_ALERT_BAR } from '@/../constants'
+// import { IpcRendererEvent, ipcRenderer } from 'electron'
+import { AlertInfo } from '@/type'
 
 @Component({
   name: 'Layout',
@@ -41,8 +42,23 @@ export default class extends mixins(ResizeMixin) {
     }
   }
 
+  private alertClosable = false
+
+  protected alertTitle = '感谢使用javis-desktop'
+
+  protected alertType = 'info'
+
   private handleClickOutside () {
     AppModule.CloseSideBar(false)
+  }
+
+  created () {
+    console.log('created')
+    // ipcRenderer.on(REFRESH_ALERT_BAR, (event: IpcRendererEvent, data: AlertInfo) => {
+    //   console.log('Renderer process receive REFRESH_ALERT_BAR signal')
+    //   this.alertTitle = data.title
+    //   this.alertType = data.type
+    // })
   }
 }
 </script>
@@ -51,8 +67,14 @@ export default class extends mixins(ResizeMixin) {
 .app-wrapper {
   @include clearfix;
   position: relative;
-  height: 100%;
+  height: 94%;
   width: 100%;
+}
+
+.alert-bar {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }
 
 .drawer-bg {
@@ -66,7 +88,6 @@ export default class extends mixins(ResizeMixin) {
 }
 
 .main-container {
-  min-height: 100%;
   height:100%;
   transition: margin-left .28s;
   margin-left: $sideBarWidth;

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { GLOBAL_CONFIG_REQ_MSG, GLOBAL_CONFIG_RES_MSG } from '@@/../constants'
+import { GLOBAL_CONFIG_REQ_MSG, GLOBAL_CONFIG_SAVE_REPO_DIR, GLOBAL_CONFIG_SAVE_GIT_PATH } from '@@/../constants'
 
 export default {
   name: 'GlobalConfig',
@@ -24,20 +24,18 @@ export default {
   created () {
     const configJson = this.$ipcRenderer.sendSync(GLOBAL_CONFIG_REQ_MSG, {})
 
-    // this.$ipcRenderer.on(GLOBAL_CONFIG_RES_MSG, (event, arg) => {
-    //   console.log(arg) // prints "ping"
-    //   event.returnValue = 'pong'
-    // })
+    if (configJson) {
+      this.gitPath = configJson.gitPath
+      this.gitRepo = configJson.localGitDir
+    }
   },
   methods: {
-    gitPathChanged (value) {
-      console.log(value)
-      console.log(this.gitPath)
+    gitPathChanged (gitPath) {
+      this.$ipcRenderer.send(GLOBAL_CONFIG_SAVE_GIT_PATH, gitPath)
     },
 
-    gitRepoChanged (value) {
-      console.log(value)
-      console.log(this.gitRepo)
+    gitRepoChanged (gitRepo) {
+      this.$ipcRenderer.send(GLOBAL_CONFIG_SAVE_REPO_DIR, gitRepo)
     }
   }
 }

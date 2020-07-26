@@ -1,5 +1,8 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
-import { GLOBAL_CONFIG_SAVE_GIT_PATH, GLOBAL_CONFIG_REQ_MSG, GLOBAL_CONFIG_SAVE_REPO_DIR } from '../constants'
+import {
+  GLOBAL_CONFIG_SAVE_GIT_PATH, GLOBAL_CONFIG_REQ_MSG,
+  GLOBAL_CONFIG_SAVE_REPO_DIR
+} from '../constants'
 import { i18n } from './configs/i18next.config'
 import { buildMenu } from './menu'
 import Settings from './configs/setting'
@@ -70,9 +73,9 @@ class App {
     })
   }
 
-  quit () {
-    app.quit()
-  }
+  // quit () {
+  //   app.quit()
+  // }
 }
 
 export default App

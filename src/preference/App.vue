@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-tabs tab-position="left" style="height: 100%;">
+    <el-tabs tab-position="left" style="height: 90%;">
       <el-tab-pane label="全局配置">
         <GlobalConfig/>
       </el-tab-pane>

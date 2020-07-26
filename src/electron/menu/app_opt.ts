@@ -10,18 +10,7 @@ export function appOpt (app: Electron.App,
       {
         label: i18n.t('Preference'),
         click: (menuItem: MenuItem, browserWindow: (Electron.BrowserWindow) | (undefined)): void => {
-          if (browserWindow != null) {
-            console.log('no null browser window')
-            browserWindow.loadFile('dist/preference/index.html').then(
-              () => { console.log('open') }
-            ).catch((reason) => { console.log('exception' + reason) })
-          }
-        }
-      },
-      {
-        label: i18n.t('About'),
-        click: (menuItem: MenuItem, browserWindow: (Electron.BrowserWindow) | (undefined)): void => {
-          const newWindow = new BrowserWindow({
+          let newWindow: Electron.BrowserWindow | null = new BrowserWindow({
             show: false,
             // frame: false,
             autoHideMenuBar: true,
@@ -33,7 +22,13 @@ export function appOpt (app: Electron.App,
           newWindow.loadFile('dist/preference/index.html')
 
           newWindow.once('ready-to-show', () => {
-            newWindow.show()
+            if (newWindow != null) {
+              newWindow.show()
+            }
+          })
+
+          newWindow.on('closed', () => {
+            newWindow = null
           })
         }
       },

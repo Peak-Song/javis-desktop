@@ -12,6 +12,4 @@ const Settings = new Store({
   }
 })
 
-Settings.set('globalConfig.gitPath', 'test')
-
 export default Settings

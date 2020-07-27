@@ -21,7 +21,7 @@ import { DeviceType, AppModule } from '@/store/modules/app'
 import { AppMain, Navbar, Sidebar } from './components'
 import ResizeMixin from './mixin/resize'
 import { REFRESH_ALERT_BAR } from '@/../constants'
-// import { IpcRendererEvent, ipcRenderer } from 'electron'
+import { IpcRendererEvent } from 'electron'
 import { AlertInfo } from '@/type'
 
 @Component({
@@ -54,11 +54,11 @@ export default class extends mixins(ResizeMixin) {
 
   created () {
     console.log('created')
-    // ipcRenderer.on(REFRESH_ALERT_BAR, (event: IpcRendererEvent, data: AlertInfo) => {
-    //   console.log('Renderer process receive REFRESH_ALERT_BAR signal')
-    //   this.alertTitle = data.title
-    //   this.alertType = data.type
-    // })
+    this.$ipcRenderer.on(REFRESH_ALERT_BAR, (event: IpcRendererEvent, data: AlertInfo) => {
+      console.log('Renderer process receive REFRESH_ALERT_BAR signal')
+      this.alertTitle = data.title
+      this.alertType = data.type
+    })
   }
 }
 </script>

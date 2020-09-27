@@ -41,8 +41,7 @@ module.exports = {
           com: path.resolve(_srcBase, '/components'),
           store: path.resolve(_srcBase, '/store')
         }
-      },
-      target: 'electron-renderer'
+      }
     })
   },
   pluginOptions: {},

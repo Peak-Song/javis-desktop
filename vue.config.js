@@ -1,15 +1,21 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path')
+
 const name = 'Javis DeskTop UI'
 
 const _srcBase = path.resolve(__dirname, './src/renderer')
+function resolve (dir) {
+  return path.join(_srcBase, dir)
+}
 
 module.exports = {
-  outputDir: path.resolve(__dirname, 'dist/renderer'),
-  publicPath: process.env.NODE_ENV === 'production' ? './' : './',
-  lintOnSave: process.env.NODE_ENV === 'development',
-  pwa: {
-    name: name
+  publicPath: './',
+  assetsDir: 'assets',
+  outputDir: 'dist',
+  devServer: {
+    // can be overwritten by process.env.HOST
+    host: '0.0.0.0',
+    port: 7895
   },
   css: {
     loaderOptions: {
@@ -27,25 +33,43 @@ module.exports = {
       }
     }
   },
-  configureWebpack: config => {
-    Object.assign(config, {
-      // 开发生产共同配置
-      resolve: {
-        extensions: ['.js', '.vue', '.json', '.ts', '.tsx'],
-        alias: {
-          '@': _srcBase,
-          '@c': path.resolve(_srcBase, '/components'),
-          utils: path.resolve(_srcBase, './utils'),
-          views: path.resolve(_srcBase, '/views'),
-          assets: path.resolve(_srcBase, '/assets'),
-          com: path.resolve(_srcBase, '/components'),
-          store: path.resolve(_srcBase, '/store')
-        }
-      }
-    })
+  pwa: {
+    name: name
   },
-  pluginOptions: {},
-  chainWebpack (config) {
-    config.set('name', name)
+  chainWebpack: config => {
+    // 路径别名，如用“@”指代“src”等
+    // Path alias, such as "@" for "src", etc.
+    config.resolve.alias
+      .set('@', _srcBase)
+      .set('@c', resolve('components'))
+      .set('src', resolve('src'))
+      .set('static', resolve('src/assets'))
+      .set('utils', resolve('utils'))
+      .set('views', resolve('views'))
+      .set('svg', resolve('assets/svg'))
+      .set('store', resolve('store'))
+  },
+  pluginOptions: {
+    electronBuilder: {
+      disableMainProcessTypescript: false,
+      mainProcessTypeChecking: true,
+      builderOptions: {
+        win: {
+          icon: './public/app.ico'
+        },
+        mac: {
+          icon: './public/app.png'
+        },
+        productName: name
+      },
+      mainProcessFile: 'src/background.ts'
+    },
+    // i18n config
+    i18n: {
+      locale: 'zh',
+      fallbackLocale: 'en',
+      localeDir: 'locales',
+      enableInSFC: false
+    }
   }
 }

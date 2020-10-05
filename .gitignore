@@ -2,6 +2,7 @@
 node_modules
 /dist
 
+
 # local env files
 .env.local
 .env.*.local
@@ -21,4 +22,5 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-release
+#Electron-builder output
+/dist_electron

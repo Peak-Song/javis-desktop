@@ -3,17 +3,12 @@ module.exports = {
   env: {
     node: true
   },
-  plugins: [
-    'vue'
-  ],
   extends: [
     'plugin:vue/essential',
     '@vue/standard',
     '@vue/typescript/recommended'
   ],
   parserOptions: {
-    parser: '@typescript-eslint/parser',
-    sourceType: 'module',
     ecmaVersion: 2020
   },
   rules: {
@@ -21,7 +16,8 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/camelcase': 'off',
-    'no-new': 'off'
-    // '@typescript-eslint/no-explicit-any': 'off',
+    'no-new': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/no-empty-function': 'off'
   }
 }

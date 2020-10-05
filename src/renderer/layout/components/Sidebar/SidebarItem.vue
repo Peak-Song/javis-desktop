@@ -87,7 +87,7 @@ export default class extends Vue {
     return { ...this.item, path: '' }
   }
 
-  private genTitle: (this: Vue, title: string)=>string = generateTitle
+  private genTitle: (this: Vue, title: string) => string = generateTitle
 
   private resolvePath (routePath: string) {
     if (isExternal(routePath)) {

@@ -38,7 +38,7 @@ export default class extends Vue {
     this.getBreadcrumb()
   }
 
-  private genTitle: (this: Vue, title: string)=>string = generateTitle
+  private genTitle: (this: Vue, title: string) => string = generateTitle
 
   private getBreadcrumb () {
     let matched = this.$route.matched.filter(

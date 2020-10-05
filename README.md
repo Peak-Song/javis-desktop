@@ -1,4 +1,4 @@
-# javis-desktop
+# javis
 
 ## Project setup
 ```
@@ -22,8 +22,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-### 目录介绍
-- layout 布局
-    route会优先加载布局, 再将组件内容填充到布局中

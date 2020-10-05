@@ -1,14 +1,18 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">
-      name:{{ name }}
-    </div>
-    <div class="dashboard-text">
-      roles:<span
-        v-for="role in roles"
-        :key="role"
-      >{{ role }}</span>
-    </div>
+<!--    <div class="dashboard-text">-->
+<!--      name:{{ name }}-->
+<!--    </div>-->
+<!--    <div class="dashboard-text">-->
+<!--      roles:<span-->
+<!--        v-for="role in roles"-->
+<!--        :key="role"-->
+<!--      >{{ role }}</span>-->
+<!--    </div>-->
+    <p>
+      吾诗已成。无论大神的震怒，还是山崩地裂，都不能把它化为无形！
+      —— 奥维德《变形记》
+    </p>
   </div>
 </template>
 

@@ -3,6 +3,7 @@ export default {
     Note: 'Note',
     Dashboard: 'Dashboard'
   },
+  message: 'Hello, i\'m rendering process!',
   trayMenu: {
     reset: 'Show main window',
     openDialog: 'Open dialog',

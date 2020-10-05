@@ -3,6 +3,7 @@ export default {
     Note: '笔记',
     Dashboard: '仪表盘'
   },
+  message: '你好，我是渲染进程！',
   trayMenu: {
     reset: '显示主窗口',
     openDialog: '打开对话框',

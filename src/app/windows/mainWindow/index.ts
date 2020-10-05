@@ -46,7 +46,8 @@ class MainWindow {
       webPreferences: {
         // 设为false允许跨域
         webSecurity: false,
-        nodeIntegration: true
+        nodeIntegration: true,
+        preload: path.join(__dirname, 'preload.js')
       },
       // eslint-disable-next-line no-undef
       // @ts-ignore

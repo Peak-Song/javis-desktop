@@ -1,48 +1,61 @@
 <template>
-  <div class="dashboard-container">
-<!--    <div class="dashboard-text">-->
-<!--      name:{{ name }}-->
-<!--    </div>-->
-<!--    <div class="dashboard-text">-->
-<!--      roles:<span-->
-<!--        v-for="role in roles"-->
-<!--        :key="role"-->
-<!--      >{{ role }}</span>-->
-<!--    </div>-->
-    <p>
-      吾诗已成。无论大神的震怒，还是山崩地裂，都不能把它化为无形！
-      —— 奥维德《变形记》
-    </p>
+  <div style="text-align: center;">
+    <div>
+      <img src="@/assets/logo.png">
+    </div>
+    <div style="font-size: 21px; padding: 20px;">
+      <!--这是一段使用了i18n的文字，请看locales文件夹中的翻译文件-->
+      <!--This is a text using i18n, please see the translation files in the locales folder-->
+      {{ $t("welcome") }}
+    </div>
+    <div style="display: flex; justify-content: center;">
+      <div
+        class="home-button app-action-button"
+        @click="openDialogByRemote"
+      >
+        {{ $t("Click Me!") }}
+      </div>
+      <div
+        class="home-button app-action-button"
+        @click="openDialogByIpc"
+      >
+        Click Me!!!
+      </div>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { UserModule } from '@/store/modules/user'
+<script>
+const ipc = window.ipcRenderer
+export default {
+  data () {
+    return {
 
-@Component({
-  name: 'Dashboard'
-})
-export default class extends Vue {
-  get name (): string {
-    return UserModule.name
+    }
+  },
+  methods: {
+    openDialogByRemote () {
+      const { dialog } = window.remote
+      dialog.showMessageBox({ title: '你好', message: '来自主进程的消息：', detail: '我是来自主进程的dialog，使用remote过来的！', type: 'info' })
+    },
+    openDialogByIpc () {
+      ipc.send('showDialog', `<${this.$t('message')}>`)
+    }
   }
 
-  get roles (): string[] {
-    return UserModule.roles
-  }
 }
 </script>
 
-<style lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 30px;
-  }
-
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
-  }
+<style>
+.home-button {
+  background-color: #263238;
+  opacity: 1;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 45px;
+  width: 150px;
+  margin: 10px 10px;
+  text-align: center;
+  line-height: 45px;
 }
 </style>

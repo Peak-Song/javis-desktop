@@ -51,6 +51,7 @@ module.exports = {
   },
   pluginOptions: {
     electronBuilder: {
+      preload: 'src/renderer/preload.js',
       disableMainProcessTypescript: false,
       mainProcessTypeChecking: true,
       builderOptions: {

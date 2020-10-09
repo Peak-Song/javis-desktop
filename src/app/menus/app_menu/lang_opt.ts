@@ -13,9 +13,8 @@ export function langOpt (mainWindow: Electron.BrowserWindow | null,
     label: $t('Language'),
     submenu: config.languages.map((languageCode: string) => {
       return {
+        id: 'lang_' + languageCode,
         label: $t(languageCode),
-        type: 'radio',
-        checked: i18n.locale === languageCode,
         click: () => {
           logger.info('pick language ' + languageCode)
           appManager.languageChange(languageCode)

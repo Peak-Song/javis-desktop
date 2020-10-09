@@ -4,7 +4,11 @@ export default {
     Dashboard: '仪表盘'
   },
   zh: '中文',
-  en: '英文',
+  en: 'English',
+  'Open DevTool': '打开调试工具',
+  Quit: '退出',
+  'Img+': '图像',
+  Language: '语言',
   welcome: '欢迎',
   message: '你好，我是渲染进程！',
   trayMenu: {

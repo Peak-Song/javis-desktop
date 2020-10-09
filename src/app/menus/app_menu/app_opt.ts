@@ -13,7 +13,7 @@ export function appOpt (mainWindow: Electron.BrowserWindow | null,
         accelerator: 'F12',
         click: (menuItem: MenuItem, browserWindow: (Electron.BrowserWindow) | (undefined)): void => {
           if (browserWindow != null) {
-            browserWindow.webContents.openDevTools()
+            browserWindow.webContents.openDevTools({ mode: 'detach' })
           }
         }
       },

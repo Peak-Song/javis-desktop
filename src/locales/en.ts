@@ -3,6 +3,8 @@ export default {
     Note: 'Note',
     Dashboard: 'Dashboard'
   },
+  zh: '中文',
+  en: 'English',
   welcome: 'welcome',
   message: 'Hello, i\'m rendering process!',
   trayMenu: {

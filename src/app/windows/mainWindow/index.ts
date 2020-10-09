@@ -22,11 +22,6 @@ class MainWindow {
 
     if (process.env.WEBPACK_DEV_SERVER_URL) {
       this.win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
-      if (!process.env.IS_TEST) {
-        // 开发环境下自启动开发者工具
-        // start developer tools in the development environment
-        this.win.webContents.openDevTools({ mode: 'detach' })
-      }
     } else {
       createProtocol('app')
       this.win.loadURL('app://./index.html')
@@ -54,24 +49,9 @@ class MainWindow {
       icon: path.join(__static, 'app.ico')
     })
 
-    // 设置窗口菜单
-    // this.setAppMainMenu()
-
     // 初始化浏览器页面
     this._initBrowserPage()
   }
-
-  // setAppMainMenu() {
-  //   if(this.win === null)
-  //     return
-  //   const template = buildMenu(this.win, this.translator)
-  //   const menu = Menu.buildFromTemplate(template)
-  //   if (process.platform === 'darwin') {
-  //     Menu.setApplicationMenu(menu)
-  //   } else {
-  //     this.win.setMenu(menu)
-  //   }
-  // }
 }
 
 export default MainWindow

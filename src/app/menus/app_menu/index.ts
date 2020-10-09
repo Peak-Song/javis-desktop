@@ -1,4 +1,4 @@
-import { Menu, MenuItemConstructorOptions } from 'electron'
+import { MenuItemConstructorOptions } from 'electron'
 import { Translator } from '../../plugins'
 
 import { appOpt } from './app_opt'
@@ -7,8 +7,9 @@ import { langOpt } from './lang_opt'
 import { listOpt } from './list_opt'
 import { noteOpt } from './note_opt'
 import { windowOption } from './window_opt'
+import AppManager from '../../appManager'
 
-export function buildMenu (mainWindow: Electron.BrowserWindow| null, translator: Translator) {
+export function buildMenu (mainWindow: Electron.BrowserWindow| null, translator: Translator, appManager: AppManager) {
   const menus: MenuItemConstructorOptions[] = [
     appOpt(mainWindow, translator),
     imgOpt(mainWindow, translator),
@@ -22,7 +23,7 @@ export function buildMenu (mainWindow: Electron.BrowserWindow| null, translator:
         ...windowOption
       ]
     },
-    langOpt(mainWindow, translator)
+    langOpt(mainWindow, translator, appManager)
   ]
 
   return menus

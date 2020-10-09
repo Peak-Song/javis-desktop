@@ -1,5 +1,5 @@
 /* global __static */
-import { Tray } from 'electron'
+import { Menu, Tray } from 'electron'
 
 // management
 import EventManager from './events'
@@ -40,6 +40,7 @@ class AppManager {
   // Initialize the app, create windows and tray
   initApp () {
     this.windowManager.createAll()
+    this._setAppMainMenu()
     this.createAppTray()
   }
 
@@ -48,7 +49,11 @@ class AppManager {
 
     // 重新设置托盘菜单（为了变更语言）
     // Reset the language of the tray menu
-    this.setAppTrayMenu()
+    this._setAppTrayMenu()
+
+    // 重新设置程序菜单（为了变更语言）
+    // Reset the language of the app menu
+    this._setAppMainMenu()
   }
 
   // 创建托盘
@@ -58,15 +63,26 @@ class AppManager {
       // @ts-ignore
       this.tray = new Tray(path.join(__static, 'app.ico'))
       this.tray.setToolTip('运行中！\nStill Working!')
-      this.setAppTrayMenu()
+      this._setAppTrayMenu()
     }
   }
 
   // 创建托盘菜单
-  setAppTrayMenu () {
+  _setAppTrayMenu () {
     const menu = this.menuManager.AppTrayMenu()
     if (this.tray !== null) {
       this.tray.setContextMenu(menu)
+    }
+  }
+
+  // 创建系统主菜单
+  _setAppMainMenu () {
+    const template = this.menuManager.AppMainMenu()
+    const menu = Menu.buildFromTemplate(template)
+    if (process.platform === 'darwin') {
+      Menu.setApplicationMenu(menu)
+    } else {
+      if (this.windowManager.mainWindow.win) { this.windowManager.mainWindow.win.setMenu(menu) }
     }
   }
 }

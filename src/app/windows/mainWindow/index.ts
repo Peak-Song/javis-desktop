@@ -55,17 +55,23 @@ class MainWindow {
     })
 
     // 设置窗口菜单
-    const template = buildMenu(this.win, this.translator)
-    const menu = Menu.buildFromTemplate(template)
-    if (process.platform === 'darwin') {
-      Menu.setApplicationMenu(menu)
-    } else {
-      this.win.setMenu(menu)
-    }
+    // this.setAppMainMenu()
 
     // 初始化浏览器页面
     this._initBrowserPage()
   }
+
+  // setAppMainMenu() {
+  //   if(this.win === null)
+  //     return
+  //   const template = buildMenu(this.win, this.translator)
+  //   const menu = Menu.buildFromTemplate(template)
+  //   if (process.platform === 'darwin') {
+  //     Menu.setApplicationMenu(menu)
+  //   } else {
+  //     this.win.setMenu(menu)
+  //   }
+  // }
 }
 
 export default MainWindow

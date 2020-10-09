@@ -2,9 +2,11 @@ import { MenuItemConstructorOptions } from 'electron'
 import config from '../../../app.config'
 import { Translator } from '../../plugins'
 import i18n from '../../../locales'
+import AppManager from '../../appManager'
+import logger from 'electron-log'
 
 export function langOpt (mainWindow: Electron.BrowserWindow | null,
-  translator: Translator): MenuItemConstructorOptions {
+  translator: Translator, appManager: AppManager): MenuItemConstructorOptions {
   const $t = translator.get()
 
   return {
@@ -15,7 +17,8 @@ export function langOpt (mainWindow: Electron.BrowserWindow | null,
         type: 'radio',
         checked: i18n.locale === languageCode,
         click: () => {
-          translator.changeLang(languageCode)
+          logger.info('pick language ' + languageCode)
+          appManager.languageChange(languageCode)
         }
       }
     })

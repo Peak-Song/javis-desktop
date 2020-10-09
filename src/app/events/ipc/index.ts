@@ -20,7 +20,7 @@ class IpcEvents {
 
         // 在任何能调用翻译器函数的地方都能使用多语言
         // Multi-language support where translator functions are available
-        message: $t('reciveFromRenderer'),
+        message: $t('receiveFromRenderer'),
         detail: msg
       }).then(r => {})
     })

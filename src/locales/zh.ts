@@ -3,6 +3,9 @@ export default {
     Note: '笔记',
     Dashboard: '仪表盘'
   },
+  zh: '中文',
+  en: '英文',
+  welcome: '欢迎',
   message: '你好，我是渲染进程！',
   trayMenu: {
     reset: '显示主窗口',

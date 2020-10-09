@@ -1,5 +1,6 @@
 import VueI18n from 'vue-i18n'
 import i18n from '../../locales'
+import AppManager from '../appManager'
 
 class Translator {
   locale: string
